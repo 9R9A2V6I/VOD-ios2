@@ -1,15 +1,20 @@
 // CustomNavLink.js
 
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../store/ThemeContext';
-import { NavLinkStyle } from "../constant/Css-Files/NavlinkStyle"
+import { NavLinkStyle } from '../constant/Css-Files/NavlinkStyle';
 
-const CurouselScroll = ({ to, title, thumbnail, duration, formatDuration, onClick }) => {
-  
-  const { fontColor } = useContext(ThemeContext); 
+const CurouselScroll = ({
+  to,
+  title,
+  thumbnail,
+  duration,
+  formatDuration,
+  onClick,
+}) => {
+  const { fontColor } = useContext(ThemeContext);
 
- 
   return (
     <NavLink style={NavLinkStyle(fontColor)} to={to} onClick={onClick}>
       <div className="cat-items2 ">

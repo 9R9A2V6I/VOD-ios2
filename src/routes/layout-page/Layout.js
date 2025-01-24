@@ -18,9 +18,9 @@ function Layout() {
       <div className="content">
         <Outlet />
       </div>
-      <div className='footer'>
+      {/* <div className='footer'>
         <Footer/>
-      </div>
+      </div> */}
     </div>
     </>
   );

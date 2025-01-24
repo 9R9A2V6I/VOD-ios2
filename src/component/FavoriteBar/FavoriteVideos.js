@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import '../../constant/Css-Files/ConstStyle.css';
 import { ThemeContext } from '../../store/ThemeContext';
 import { NavLinkStyle } from '../../constant/Css-Files/NavlinkStyle';
+import { formatDuration } from '../../utils/FormatDuration';
 
 // Lazy-load the CarouselScroll component
 const CurouselScroll = React.lazy(() => import('../../utils/CarouselScroll'));
@@ -33,12 +34,10 @@ const FavoriteVideos = () => {
 
   // const visibleFavorites = catData.slice(0, 4); // Show only 4 favorites initially
 
-  const formatDuration = (duration) => {
-    const parts = duration.split(':');
-    return parts.length === 3 && parts[0] === '00'
-      ? `${parts[1]}:${parts[2]}`
-      : duration;
-  };
+ 
+
+  const truncateTitle = (title) =>
+    title.length > 20 ? `${title.slice(0, 17)}...` : title;
 
   return (
     <>
@@ -46,9 +45,11 @@ const FavoriteVideos = () => {
         <div className="Fav-main-section">
           <div className="category-carousel">
             <div className="carousel-heading">
-              {catData.length > 0 && (
-                <h1 className="heading-font">Favorites</h1>
-              )}
+              <NavLink style={NavLinkStyle(fontColor)} to="schedule">
+                {catData.length > 0 && (
+                  <h1 className="heading-font">Favorites</h1>
+                )}
+              </NavLink>
               {catData.length > 5 && (
                 <NavLink style={NavLinkStyle(fontColor)} to="allFavorites">
                   <p
@@ -56,9 +57,9 @@ const FavoriteVideos = () => {
                     style={{
                       color: fontColor
                         ? fontColor === 'white'
-                          ? '#C4C4C4'
-                          : '#666666'
-                        : '#666666',
+                          ? '#fff'
+                          : '#737373'
+                        : '#737373',
                     }}
                   >
                     View All
@@ -73,7 +74,7 @@ const FavoriteVideos = () => {
                   <Suspense key={itemIndex}>
                     <CurouselScroll
                       to={`/video/${item.ID}`}
-                      title={item.title}
+                      title={truncateTitle(item.title)}
                       thumbnail={item.thumbnail}
                       duration={item.duration}
                       formatDuration={formatDuration}

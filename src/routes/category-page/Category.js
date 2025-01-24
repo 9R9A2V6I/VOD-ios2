@@ -6,6 +6,7 @@ import './Category.css';
 import { AiFillFileUnknown } from 'react-icons/ai';
 import { ThemeContext } from '../../store/ThemeContext';
 import { NavLinkStyle } from '../../constant/Css-Files/NavlinkStyle';
+import { formatDuration } from '../../utils/FormatDuration';
 
 const Category = () => {
   const { id } = useParams();
@@ -22,22 +23,18 @@ const Category = () => {
   const [error, setError] = useState(null);
 
   const selectedInstructor = searchParams.get('instructor') || '';
-  const selectedDuration = decodeURIComponent(searchParams.get('duration') || '');
+  const selectedDuration = decodeURIComponent(
+    searchParams.get('duration') || ''
+  );
 
   // Format duration function
-  const formatDuration = (duration = '00:00:00') => {
-    const parts = duration.split(':');
-    return parts.length === 3 && parts[0] === '00'
-      ? `${parts[1]}:${parts[2]}`
-      : duration;
-  };
 
   // Fetch instructors
   useEffect(() => {
     const fetchInstructors = async () => {
       try {
         const response = await axios.post(
-          'https://vodv3.ipstudio.co/wp-admin/admin-ajax.php',
+          `${window.location.origin}/wp-admin/admin-ajax.php`,
           new URLSearchParams({
             action: 'get_video_filter',
           })
@@ -64,7 +61,7 @@ const Category = () => {
         params.append('is_single', 'true');
 
         const response = await axios.post(
-          'https://vodv3.ipstudio.co/wp-admin/admin-ajax.php',
+          `${window.location.origin}/wp-admin/admin-ajax.php`,
           params
         );
 
@@ -101,14 +98,14 @@ const Category = () => {
     } else {
       durationParam = duration;
     }
-  
+
     setSearchParams({
       instructor: selectedInstructor,
       duration: encodeURIComponent(durationParam),
     });
     setDurationDropdownOpen(false);
   };
-  
+
   if (isErrorVideos)
     return <div>{error?.message || 'Error fetching video data'}</div>;
   if (isErrorInstructors) return <div>Error fetching instructor data</div>;
@@ -119,7 +116,9 @@ const Category = () => {
       ? searchParams.has('instructor') // If an instructor parameter exists but it's empty, show "All"
         ? 'All'
         : 'Choose an option' // Show "Choose an option" initially
-      : instructors?.find((instructor) => instructor.term_id == selectedInstructor)?.name || 'Choose an option';
+      : instructors?.find(
+          (instructor) => instructor.term_id == selectedInstructor
+        )?.name || 'Choose an option';
 
   const selectedDurationName =
     selectedDuration === ''
@@ -130,99 +129,102 @@ const Category = () => {
 
   return (
     <div className="cat-container">
-      <div className='category-main'>
-      <div className="category-detail">
-        <h1 className="heading-font">{catData?.cat_detail?.cat_name}</h1>
-        <p className="title-font">
-          {catData?.cat_detail?.category_description}
-        </p>
-      </div>
-
-      <div className="cat-filter">
-        <div className="filter-group">
-          <label>Instructor</label>
-          <div className="custom-dropdown">
-            <div
-              className="dropdown-selected"
-              onClick={toggleInstructorDropdown}
-            >
-              {selectedInstructorNameV}
-              <IoChevronDownSharp
-                size={16}
-                className={instructorDropdownOpen ? 'rotate-icon' : ''}
-              />
-            </div>
-            {instructorDropdownOpen && (
-              <ul className="dropdown-options">
-                <li onClick={() => selectInstructor('all')}>All</li>
-                {instructors?.map((instructor) => (
-                  <li
-                    key={instructor.term_id}
-                    onClick={() => selectInstructor(instructor.term_id)}
-                  >
-                    {instructor.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+      <div className="category-main">
+        <div className="category-detail">
+          <h1 className="heading-font-cat">{catData?.cat_detail?.cat_name}</h1>
+          <p className="title-font">
+            {catData?.cat_detail?.category_description}
+          </p>
         </div>
-        <div className="filter-group">
-          <label>Duration</label>
-          <div className="custom-dropdown">
-            <div className="dropdown-selected" onClick={toggleDurationDropdown}>
-              {selectedDurationName || 'Choose an option'}
-              <IoChevronDownSharp
-                size={16}
-                className={durationDropdownOpen ? 'rotate-icon' : ''}
-              />
-            </div>
-            {durationDropdownOpen && (
-              <ul className="dropdown-options">
-                <li onClick={() => selectDuration('all')}>All</li>
-                {[
-                  '0-20 mins',
-                  '20-30 mins',
-                  '30-45 mins',
-                  '45-60 mins',
-                  '60+ mins',
-                ].map((duration, index) => (
-                  <li key={index} onClick={() => selectDuration(duration)}>
-                    {duration}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
 
-      {/* Show "No Data Found" message if no videos are present */}
-      {catData?.repeater_data?.length === 0 && (
-        <div className="not-data-msg">
-          <AiFillFileUnknown size={32} color="#D9D9D9" />{' '}
-          <h1>No Result Found</h1>
-        </div>
-      )}
-
-      <div className="cat-videos-container">
-        {catData?.repeater_data?.length > 0 &&
-          catData.repeater_data.map((item) => (
-            <NavLink
-              style={NavLinkStyle(fontColor)}
-              to={`/video/${item.ID}`}
-              key={item.ID}
-            >
-              <div className="cat-items">
-                <img src={item.thumbnail} alt={item.title} />
-                <div className="cat-items-dur-c">
-                  <p>{formatDuration(item.duration)}</p>
-                </div>
+        <div className="cat-filter">
+          <div className="filter-group">
+            <label>Instructor</label>
+            <div className="custom-dropdown">
+              <div
+                className="dropdown-selected"
+                onClick={toggleInstructorDropdown}
+              >
+                {selectedInstructorNameV}
+                <IoChevronDownSharp
+                  size={16}
+                  className={instructorDropdownOpen ? 'rotate-icon' : ''}
+                />
               </div>
-              <p className="title-font">{item.title}</p>
-            </NavLink>
-          ))}
-      </div>
+              {instructorDropdownOpen && instructors && (
+                <ul className="dropdown-options">
+                  <li onClick={() => selectInstructor('all')}>All</li>
+                  {instructors?.map((instructor) => (
+                    <li
+                      key={instructor.term_id}
+                      onClick={() => selectInstructor(instructor.term_id)}
+                    >
+                      {instructor.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+          <div className="filter-group">
+            <label>Duration</label>
+            <div className="custom-dropdown">
+              <div
+                className="dropdown-selected"
+                onClick={toggleDurationDropdown}
+              >
+                {selectedDurationName || 'Choose an option'}
+                <IoChevronDownSharp
+                  size={16}
+                  className={durationDropdownOpen ? 'rotate-icon' : ''}
+                />
+              </div>
+              {durationDropdownOpen && (
+                <ul className="dropdown-options">
+                  <li onClick={() => selectDuration('all')}>All</li>
+                  {[
+                    '0-20 mins',
+                    '20-30 mins',
+                    '30-45 mins',
+                    '45-60 mins',
+                    '60+ mins',
+                  ].map((duration, index) => (
+                    <li key={index} onClick={() => selectDuration(duration)}>
+                      {duration}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Show "No Data Found" message if no videos are present */}
+        {catData?.repeater_data?.length === 0 && (
+          <div className="not-data-msg">
+            <AiFillFileUnknown size={32} color="#D9D9D9" />{' '}
+            <h1>No Result Found</h1>
+          </div>
+        )}
+
+        <div className="cat-videos-container">
+          {catData?.repeater_data?.length > 0 &&
+            catData.repeater_data.map((item) => (
+              <NavLink
+                style={NavLinkStyle(fontColor)}
+                to={`/video/${item.ID}`}
+                key={item.ID}
+              >
+                <div className="cat-items">
+                  <img src={item.thumbnail} alt={item.title} />
+                  <div className="cat-items-dur-c">
+                    <p>{formatDuration(item.duration)}</p>
+                  </div>
+                </div>
+                <p className="title-font">{item.title}</p>
+              </NavLink>
+            ))}
+        </div>
       </div>
     </div>
   );

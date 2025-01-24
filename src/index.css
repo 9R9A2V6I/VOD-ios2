@@ -1,19 +1,22 @@
 
-
 @font-face {
   font-family: 'Avenir';
+  src: url('./assets/fonts/AvenirLTProMedium.otf'),
+    url('./assets/fonts/AvenirLTProBlack.otf'),
+    url('./assets/fonts/AvenirLTProHeavy.otf');
 
-  font-weight: normal; /* Specify font weight if needed */
-  font-style: normal;  /* Specify font style if needed */
+  font-weight: normal;
+  /* Specify font weight if needed */
+  font-style: normal;
+  /* Specify font style if needed */
 }
+
+
+
 body {
   margin: 0;
-  font-family: 'Avenir', sans-serif; 
+  font-family: 'Avenir', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
 }
-
-
-
-

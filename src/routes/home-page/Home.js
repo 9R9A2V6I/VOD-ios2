@@ -5,6 +5,9 @@ import Carousel from '../../component/CarouselBar/Carousel';
 import Slider from '../../component/SliderBar/Slider';
 import FavoriteVideos from '../../component/FavoriteBar/FavoriteVideos';
 function Home() {
+
+
+  
   return (
     <>
       <Slider />

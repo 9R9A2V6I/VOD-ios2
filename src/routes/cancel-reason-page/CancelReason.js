@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { IoChevronDownSharp } from 'react-icons/io5';
 import './CancelReason.css';
 import SubmitBtn from '../../constant/submit-Btn/SubmitBtn';
+import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../store/ThemeContext';
 
 const CancelReason = () => {
@@ -11,6 +12,8 @@ const CancelReason = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const { fontColor } = useContext(ThemeContext); // Track submission status
+
+  const navigate = useNavigate();
 
   const toggleDurationDropdown = () =>
     setDurationDropdownOpen(!durationDropdownOpen);
@@ -35,6 +38,9 @@ const CancelReason = () => {
         {!submitted ? (
           <>
             <div className="cancel-box">
+              <div className="account-top-btn">
+                <h3 onClick={() => navigate('/account')}>Back</h3>
+              </div>
               <h1 className="cancel-reason-head">
                 Reason for your cancellation
               </h1>
@@ -108,6 +114,9 @@ const CancelReason = () => {
         ) : (
           <>
             <div className="cancel-box">
+              <div className="account-top-btn">
+                <h3 onClick={() => navigate('/account')}>Back</h3>
+              </div>
               <div className="confirmation-message">
                 <h3>We’ve received your request</h3>
                 <p>

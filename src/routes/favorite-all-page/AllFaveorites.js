@@ -4,6 +4,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../store/ThemeContext';
 import { NavLinkStyle } from '../../constant/Css-Files/NavlinkStyle';
+import { formatDuration } from '../../utils/FormatDuration';
 
 const AllFaveorites = () => {
   const [catData, setCatData] = useState([]);
@@ -24,12 +25,7 @@ const AllFaveorites = () => {
     fetchCarouselData();
   }, []);
 
-  const formatDuration = (duration) => {
-    const parts = duration.split(':');
-    return parts.length === 3 && parts[0] === '00'
-      ? `${parts[1]}:${parts[2]}`
-      : duration;
-  };
+ 
 
   return (
     <div className="cat-container">

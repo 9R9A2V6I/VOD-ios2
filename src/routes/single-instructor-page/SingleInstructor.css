@@ -1,0 +1,55 @@
+.instructor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.instructorImg {
+  height: 267px;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  object-fit: cover;
+}
+
+.instructorContent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 19px;
+}
+
+.instructorType {
+  font-size: 12px;
+}
+
+.instructorPersonal {
+  font-size: 23px;
+}
+
+.instructorDecri {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.instructorPersonal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.instrSocial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+
+}

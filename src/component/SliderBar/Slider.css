@@ -1,3 +1,7 @@
+.slider-container {
+  margin-top: 0px;
+}
+
 .carousel-item {
   border-radius: 10px;
   position: relative;
@@ -19,21 +23,21 @@
   position: absolute;
   background: rgba(0, 0, 0, 0.6);
   width: 80%;
-  height: 70%;
+  height: 75%;
   padding: 15px 14px;
   color: white;
   text-align: left;
   border-radius: 8px;
   backdrop-filter: blur(5px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
- 
+
 }
 
 
 
 .slider-text-box h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 800;
   /* margin-top: 20px; */
   margin-bottom: 10px;
@@ -59,7 +63,7 @@
   text-decoration: none;
 
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 16px;
   font-size: 14px;
 
 }
@@ -89,7 +93,7 @@
     background: rgba(0, 0, 0, 0.6);
 
     width: 90%;
-    height: 70%;
+    height: 75%;
     /* min-height: 165px; */
     /* max-width: 340px; */
     padding: 15px 14px;
@@ -115,7 +119,35 @@
     background: rgba(0, 0, 0, 0.6);
 
     width: 90%;
-    height: 70%;
+    height: 75%;
+
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+@media (max-width: 432px) {
+  .carousel-item img {
+    max-height: 250px;
+    max-width: 360px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    top: 50%;
+    left: 47.5%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 75%;
 
     padding: 15px 14px;
     color: white;
@@ -143,7 +175,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    height: 70%;
+    height: 75%;
 
     padding: 15px 14px;
     color: white;
@@ -168,7 +200,7 @@
     background: rgba(0, 0, 0, 0.6);
 
     width: 90%;
-    height: 70%;
+    height: 75%;
 
     padding: 15px 14px;
     color: white;
@@ -193,7 +225,7 @@
     background: rgba(0, 0, 0, 0.6);
 
     width: 90%;
-    height: 70%;
+    height: 75%;
 
     padding: 15px 14px;
     color: white;

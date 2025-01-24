@@ -6,16 +6,22 @@
   flex-direction: column;
   /* padding: 20px; */
   margin-bottom: 67px;
+  margin-top: 15px;
+}
+
+.heading-font-cat {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 30px;
+  margin-bottom: 17px;
 }
 
 .category-main {
   width: 93%;
-  margin-top: 7px;
 }
 
 .category-detail {
   width: 100%;
-  margin-top: 15px;
 }
 
 .cat-items {
@@ -26,7 +32,12 @@
 }
 
 
-
+.instructorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 
 .cat-filter {

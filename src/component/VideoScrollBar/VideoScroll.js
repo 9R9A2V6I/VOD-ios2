@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { formatDuration } from '../../utils/FormatDuration';
 
 
 const ITEM_WIDTH = 300;
@@ -45,9 +46,6 @@ const VideoScroll = ({ items = [], buttonVisibility = { left: false, right: fals
 };
 
 // Helper function for formatting duration
-const formatDuration = (duration) => {
-  const parts = duration.split(':');
-  return parts.length === 3 && parts[0] === '00' ? `${parts[1]}:${parts[2]}` : duration;
-};
+
 
 export default VideoScroll;

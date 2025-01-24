@@ -1,3 +1,3 @@
-module.exports={
-  apiURL: "https://vodv3.ipstudio.co/wp-admin/"
-}
+module.exports = {
+  apiURL: `${window.location.origin}/wp-admin/`,
+};

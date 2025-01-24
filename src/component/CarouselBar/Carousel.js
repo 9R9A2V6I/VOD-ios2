@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import '../../constant/Css-Files/ConstStyle.css';
 import { ThemeContext } from '../../store/ThemeContext';
 import { NavLinkStyle } from '../../constant/Css-Files/NavlinkStyle';
+import { formatDuration } from '../../utils/FormatDuration';
 
 // Lazy-load the CarouselScroll component
 const CurouselScroll = React.lazy(() => import('../../utils/CarouselScroll'));
@@ -26,16 +27,16 @@ const Carousel = () => {
     }
   };
 
+  // Fetch SliderData
+
   useEffect(() => {
     fetchCarouselData();
   }, []);
 
-  const formatDuration = (duration) => {
-    const parts = duration.split(':');
-    return parts.length === 3 && parts[0] === '00'
-      ? `${parts[1]}:${parts[2]}`
-      : duration;
-  };
+ 
+
+  const truncateTitle = (title) =>
+    title.length > 20 ? `${title.slice(0, 17)}...` : title;
 
   return (
     <>
@@ -53,9 +54,9 @@ const Carousel = () => {
                   style={{
                     color: fontColor
                       ? fontColor === 'white'
-                        ? '#C4C4C4'
-                        : '#666666'
-                      : '#666666',
+                        ? '#fff'
+                        : '#737373'
+                      : '#737373',
                   }}
                 >
                   View All
@@ -69,7 +70,7 @@ const Carousel = () => {
                   <Suspense key={itemIndex}>
                     <CurouselScroll
                       to={`/video/${item.ID}`}
-                      title={item.title}
+                      title={truncateTitle(item.title)}
                       thumbnail={item.thumbnail}
                       duration={item.duration}
                       formatDuration={formatDuration}

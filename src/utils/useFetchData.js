@@ -1,27 +1,64 @@
-import { useQuery } from '@tanstack/react-query';
+// hooks/useGetApi.js
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { apiURL } from '../config';
 
-const fetchData = async ({ queryKey }) => {
-  const [action, params, method] = queryKey;
-  const url = `${apiURL}admin-ajax.php`;
+export const useGetApi = (url, options = {}) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (method === 'POST') {
-    const response = await axios.post(url, params);
-    return response.data.data;
-  } else {
-    const response = await axios.get(url, { params });
-    return response.data.data;
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(url, options);
+        setData(response.data);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (url) {
+      fetchData();
+    }
+  }, [url, options]);
+
+  return { data, loading, error };
 };
 
-const useFetchData = (action, params, method = 'GET') => {
-  return useQuery({
-    queryKey: [action, params, method],
-    queryFn: fetchData,
-    staleTime: 5 * 60 * 1000,
-    retry: 1,
-  });
+
+// hooks/usePostApi.js
+export const usePostApi = (url, postData, options = {}) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const postDataAsync = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.post(url, postData, options);
+        setData(response.data);
+      } catch (err) {
+        console.error('Error posting data:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (url && postData) {
+      postDataAsync();
+    }
+  }, [url, postData, options]);
+
+  return { data, loading, error };
 };
 
-export default useFetchData;
+
+
+
+

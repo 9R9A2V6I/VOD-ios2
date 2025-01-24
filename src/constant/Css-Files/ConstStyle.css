@@ -1,19 +1,15 @@
-.heading-font{
-  font-size: 22px;
+.heading-font {
+  font-size: 23px;
   font-weight: 800;
   line-height: 30px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 25px;
+  margin-bottom: 17px;
 }
 
-.title-font{
+.title-font {
   font-size: 16px;
   line-height: 22px;
   font-weight: 400px;
-  /* color: #17181C; */
+
   margin-top: 5px;
 }
-
-
-
-

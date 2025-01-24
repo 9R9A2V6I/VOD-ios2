@@ -8,9 +8,13 @@ import CancelAccount from './routes/cancel-account-page/CancelAccount';
 import CancelReason from './routes/cancel-reason-page/CancelReason';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import config from './config';
 import { useLocation } from 'react-router-dom';
-import Loader from './constant/LoadingBar/Loader';
+// import Loader from './constant/LoadingBar/Loader';
 import AllFaveorites from './routes/favorite-all-page/AllFaveorites';
+import CalenderView from './component/ScheduleBar/CalendarView';
+import AllInstructors from './routes/instructor-page/AllInstructors';
+import SingleInstructor from './routes/single-instructor-page/SingleInstructor';
 
 // ScrollToTop component
 const ScrollToTop = () => {
@@ -24,8 +28,8 @@ const ScrollToTop = () => {
 };
 
 const redirectToLogin = () => {
-  window.location.href =
-    'https://vodv3.ipstudio.co/login?redirect_to=https://vodv3.ipstudio.co/vod-ios';
+  const currentHost = window.location.origin;
+  window.location.href = `${currentHost}/login?redirect_to=${currentHost}/vod-ios2`;
 };
 
 const ProtectedRoute = ({ component: Component }) => {
@@ -36,11 +40,13 @@ const ProtectedRoute = ({ component: Component }) => {
   const [loading, setLoading] = useState(true);
   const initialLoadRef = useRef(true);
 
+
+  // UserData Fetch
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          'https://vodv3.ipstudio.co/wp-admin/admin-ajax.php?action=get_self'
+          `${config.apiURL}admin-ajax.php?action=get_self`
         );
 
         if (response.data.success && response.data.data.active) {
@@ -65,23 +71,21 @@ const ProtectedRoute = ({ component: Component }) => {
     } else {
       setLoading(false);
     }
-
     initialLoadRef.current = false;
   }, [userInfo]);
 
+  // Show a loading state while verifying the session
   if (loading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
+  // If no user info or user has an invalid ID or is inactive, redirect
   if (!userInfo || userInfo.ID === 0 || !userInfo.active) {
     redirectToLogin();
     return null;
   }
 
+  // If the user is authenticated, render the protected component
   return <Component />;
 };
 
@@ -100,21 +104,31 @@ export const router = createBrowserRouter(
             </>
           ),
         },
-        {
-          path: 'video/:id',
-          element: (
-            <>
-              <ScrollToTop />
-              <ProtectedRoute component={VideoPlayer} />
-            </>
-          ),
-        },
+
         {
           path: 'allFavorites',
           element: (
             <>
               <ScrollToTop />
               <ProtectedRoute component={AllFaveorites} />
+            </>
+          ),
+        },
+        {
+          path: 'instructors',
+          element: (
+            <>
+              <ScrollToTop />
+              <ProtectedRoute component={AllInstructors} />
+            </>
+          ),
+        },
+        {
+          path: 'instructors/:instructorName',
+          element: (
+            <>
+              <ScrollToTop />
+              <ProtectedRoute component={SingleInstructor} />
             </>
           ),
         },
@@ -146,6 +160,15 @@ export const router = createBrowserRouter(
           ),
         },
         {
+          path: 'schedule',
+          element: (
+            <>
+              <ScrollToTop />
+              <ProtectedRoute component={CalenderView} />
+            </>
+          ),
+        },
+        {
           path: 'category/:id/instructor/:instructorId/duration/:duration',
           element: (
             <>
@@ -155,6 +178,15 @@ export const router = createBrowserRouter(
           ),
         },
       ],
+    },
+    {
+      path: 'video/:id',
+      element: (
+        <>
+          <ScrollToTop />
+          <ProtectedRoute component={VideoPlayer} />
+        </>
+      ),
     },
     {
       path: 'account',
@@ -185,6 +217,6 @@ export const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/vod-ios',
+    basename: '/vod-ios2',
   }
 );
