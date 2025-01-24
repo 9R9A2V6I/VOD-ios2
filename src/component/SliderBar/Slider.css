@@ -1,0 +1,230 @@
+.carousel-item {
+  border-radius: 10px;
+  position: relative;
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  height: 30vh;
+  max-width: 90%;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.slider-text-box {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 80%;
+  height: 70%;
+  padding: 15px 14px;
+  color: white;
+  text-align: left;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+ 
+}
+
+
+
+.slider-text-box h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  /* margin-top: 20px; */
+  margin-bottom: 10px;
+}
+
+.slider-text-box p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+
+.play-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 121px;
+  height: 33.61px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 20px;
+  text-decoration: none;
+
+  border-radius: 30px;
+  margin-top: 10px;
+  font-size: 14px;
+
+}
+
+.play-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45px;
+  font-size: 14px;
+
+}
+
+
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 250px;
+    max-width: 365px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+
+    width: 90%;
+    height: 70%;
+    /* min-height: 165px; */
+    /* max-width: 340px; */
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 479px) {
+  .carousel-item img {
+    max-height: 250px;
+    max-width: 365px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+
+    width: 90%;
+    height: 70%;
+
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+@media (max-width: 429px) {
+  .carousel-item img {
+    max-height: 250px;
+    max-width: 350px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 70%;
+
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 395px) {
+  .carousel-item img {
+    max-height: 250px;
+    max-width: 325px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+
+    width: 90%;
+    height: 70%;
+
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 376px) {
+  .carousel-item img {
+    max-height: 250px;
+    max-width: 310px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+
+    width: 90%;
+    height: 70%;
+
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 374px) {
+  .carousel-item img {
+    max-height: 250px;
+    max-width: 295px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider-text-box {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+
+    width: 90%;
+    height: 80%;
+
+    padding: 15px 14px;
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}

@@ -1,0 +1,41 @@
+.cancel-container{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cancel-box{
+  width: 80%;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: start;
+  align-items: left;
+  flex-direction: column;
+  margin-top: 18px;
+}
+
+.cancel-reason-head{
+  font-size: 22px;
+  font-weight: 800px;
+}
+
+.cancel-account-para{
+  color:#6D7073;
+}
+.cancel-box p{
+  font-size: 14px;
+  font-weight: 400px;
+  color: #6D7073;
+  line-height: 19.12px;
+  margin-top: 11px;
+}
+
+.hr-line-cancel{
+  background: #C8CACC;
+  height: 0.7px;
+  width: 87%;
+  margin-top:64px;
+  border: none;
+}

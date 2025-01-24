@@ -1,0 +1,19 @@
+
+
+@font-face {
+  font-family: 'Avenir';
+
+  font-weight: normal; /* Specify font weight if needed */
+  font-style: normal;  /* Specify font style if needed */
+}
+body {
+  margin: 0;
+  font-family: 'Avenir', sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+
+
+

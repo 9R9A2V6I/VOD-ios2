@@ -1,0 +1,73 @@
+.cancel-group {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.cancel-group label {
+  font-size: 14px;
+  
+}
+
+.cancel-dropdown-selected {
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  height: 40px;
+  padding: 12px;
+}
+.cancel-reason-head{
+  margin-top: 20px;
+  font-weight: 800;
+}
+
+.other-reason-input textarea {
+  width: 98%;
+  height: 80px;
+  margin-top: 40px;
+  border: 1px solid #E1E2E8;
+  border-radius: 5px;
+  text-align: left; /* Ensure placeholder aligns to the left */
+  padding: 10px 20px; /* Padding for better alignment as per the design */
+  font-size: 16px; /* Adjust font size to match Figma design */
+  font-family: 'Arial', sans-serif; /* Set font to match the style */
+  color: #000; /* Ensure text color is black */
+}
+
+.other-reason-input textarea::placeholder {
+  color: #B0B0B0; /* Placeholder color similar to Figma */
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+}
+
+.hr-line-cancel-reason{
+  background: #C8CACC;
+  height: 0.7px;
+  width: 87%;
+  margin-top: 59px;
+  border: none;
+}
+.confirmation-message{
+  margin-top: 20px;
+}
+.hr-line-cancel-msg{
+  background: #C8CACC;
+  height: 0.7px;
+  width: 87%;
+  margin-top: 31px;
+  border: none;
+}
+
+.dropdown-options li{
+  font-size: 14px;
+}
+
+.cancel-dropdown-selected{
+  font-size: 14px;
+}
